@@ -21,10 +21,23 @@ public struct Stack<T: Equatable> {
     public func isEmpty() -> Bool {
         return list.isEmpty
     }
+    
+    public mutating func reverse() {
+        self.list.reverse()
+    }
 }
 
 extension Stack: CustomStringConvertible {
     public var description: String {
         return list.description
+    }
+}
+
+/**
+ Iterating through the Stack begins at the end of the LinkedList, removing from the top, one at at time
+ */
+extension Stack: Sequence, IteratorProtocol {
+    public mutating func next() -> T? {
+        return pop()
     }
 }

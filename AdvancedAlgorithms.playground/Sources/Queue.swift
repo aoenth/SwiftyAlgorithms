@@ -1,6 +1,6 @@
 import Foundation
 
-public struct Queue<T> {
+public struct Queue<T> where T: Equatable {
     fileprivate var list = LinkedList<T>()
     
     public init() {

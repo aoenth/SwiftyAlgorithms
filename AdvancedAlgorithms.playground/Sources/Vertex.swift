@@ -21,3 +21,9 @@ public class Vertex: CustomStringConvertible {
         return "Data: \(data), visited: \(visited)"
     }
 }
+
+extension Vertex: Equatable {
+    public static func == (lhs: Vertex, rhs: Vertex) -> Bool {
+        return lhs.data == rhs.data
+    }
+}

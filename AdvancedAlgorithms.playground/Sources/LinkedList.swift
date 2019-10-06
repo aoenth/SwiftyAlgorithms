@@ -3,7 +3,7 @@ import Foundation
 // Implementation of LinkedList
 // https://www.raywenderlich.com/947-swift-algorithm-club-swift-linked-list-data-structure
 
-public class Node<T> {
+public class Node<T> where T: Equatable {
     public var value: T
     public var next: Node?
     public var previous: Node?
@@ -13,7 +13,13 @@ public class Node<T> {
     }
 }
 
-public class LinkedList<T> {
+extension Node: Equatable where T: Equatable {
+    public static func == (lhs: Node<T>, rhs: Node<T>) -> Bool {
+        return lhs.value == rhs.value
+    }
+}
+
+public class LinkedList<T> where T: Equatable {
     fileprivate var head: Node<T>?
     private var tail: Node<T>?
     
@@ -75,20 +81,18 @@ public class LinkedList<T> {
         return node.value
     }
     
-//    public func reverse() {
-//        guard !isEmpty else { return }
-//        let newHead = Node(value: tail!.value)
-//        
-//        while tail != newHead {
-//            var newFirst = head?.next
-//            tail.next = head
-//            head?.previous = tail
-//            head.next = nil
-//            newFirst.previous = nil
-//            tail = head
-//            head = newFirst
-//        }
-//    }
+    public func reverse() {
+        tail = head
+        var current = head
+        while current != nil {
+            let temp = current!.previous
+            current!.previous = current!.next
+            current!.next = temp
+            head = current
+            current = current!.previous
+        }
+    }
+        
 }
 
 extension LinkedList: CustomStringConvertible {

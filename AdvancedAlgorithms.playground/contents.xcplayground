@@ -10,5 +10,6 @@
         <page name='Bellman-Ford Algorithm'/>
         <page name='DAG Shortest Path Algorithm'/>
         <page name='Stack with Generics'/>
+        <page name='Reversing Stack, LL'/>
     </pages>
 </playground>
