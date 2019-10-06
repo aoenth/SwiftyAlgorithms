@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios' display-mode='raw'>
+    <pages>
+        <page name='Breadth First Search'/>
+        <page name='Depth First Search'/>
+        <page name='Topological Order'/>
+        <page name='Cycle Detection'/>
+        <page name='Map Solver'/>
+        <page name='Dijkstra Algorithm'/>
+        <page name='Bellman-Ford Algorithm'/>
+        <page name='DAG Shortest Path Algorithm'/>
+        <page name='Stack with Generics'/>
+    </pages>
+</playground>
