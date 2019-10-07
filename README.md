@@ -22,3 +22,5 @@
 * Dijkstra's algorithm
 * Bellman-Ford algorithm
 * DAG (Directed Acyclic Graph) shortest path algorithm
+* FX trading arbitrage detection
+* longest path algorithm
