@@ -11,5 +11,6 @@
         <page name='DAG Shortest Path Algorithm'/>
         <page name='Stack with Generics'/>
         <page name='Reversing Stack, LL'/>
+        <page name='Arbitrage Detection'/>
     </pages>
 </playground>
