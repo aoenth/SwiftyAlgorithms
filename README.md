@@ -1,5 +1,6 @@
 # Algorithms and Data Structures Implemented in Swift
 ## Data Structures
+They are found under the "Sources" folder
 ### linked list
 * reversible
 * genericized
@@ -14,6 +15,7 @@
 * you can set priority based on a comparison function
 
 ## Algorithms
+They are found as Playground Pages
 * breadth-first search
 * depth-first search
 * topological ordering
