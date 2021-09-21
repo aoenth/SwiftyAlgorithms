@@ -16,7 +16,7 @@ public class BreadthFirstSearch {
             if let actualVertex = queue.dequeue() {
                 print(actualVertex)
                 
-                for v in actualVertex.neighbourList {
+                for v in actualVertex.adjacenciesList {
                     if (!v.visited) {
                         v.visited = true
                         queue.enqueue(v)

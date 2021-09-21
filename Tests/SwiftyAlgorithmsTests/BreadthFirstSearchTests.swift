@@ -3,7 +3,7 @@ import XCTest
 
 final class BreadthFirstSearchTests: XCTestCase {
     func test() throws {
-        let bfs = BreadthFirstSearch()
+        let bfs = BreadthFirstSearchSpy()
 
         let vertex1 = Vertex(data: 1)
         let vertex2 = Vertex(data: 2)
@@ -19,6 +19,22 @@ final class BreadthFirstSearchTests: XCTestCase {
 
         bfs.bfs(root: vertex1)
 
-        WebCrawler().discoverWeb(root: "http://www.bbc.com/")
+        let expected = [
+            vertex1,
+            vertex2,
+            vertex4,
+            vertex3,
+            vertex5
+        ]
+        XCTAssertEqual(bfs.visitations, expected)
+    }
+
+    final class BreadthFirstSearchSpy: BreadthFirstSearch {
+        var visitations: [Vertex] = []
+
+        override func bfs(root: Vertex) {
+            visitations.append(root)
+            super.bfs(root: root)
+        }
     }
 }
