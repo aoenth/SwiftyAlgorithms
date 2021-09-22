@@ -27,7 +27,7 @@ public struct Dijkstra {
         public var targetVertex: Vertex
     }
 
-    public func computePaths(sourceVertex: Vertex) {
+    static public func computePaths(sourceVertex: Vertex) {
         sourceVertex.distance = 0
         var priorityQueue = Heap<Vertex>(priorityFunction: <)
 
@@ -52,7 +52,7 @@ public struct Dijkstra {
         }
     }
 
-    public func getShortestPath(to targetVertex: Vertex) -> [Vertex] {
+    static public func getShortestPath(to targetVertex: Vertex) -> [Vertex] {
         var shortestPathToTarget = [targetVertex]
         var targetVertex = targetVertex
 

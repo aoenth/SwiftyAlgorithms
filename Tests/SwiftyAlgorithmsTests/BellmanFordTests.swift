@@ -2,6 +2,9 @@ import XCTest
 @testable import SwiftyAlgorithms
 
 final class BellmanFordTests: XCTestCase {
+    typealias Vertex = BellmanFord.Vertex
+    typealias Edge = BellmanFord.Edge
+
     func test() throws {
         let vertexList = [
             Vertex(name: "A"),

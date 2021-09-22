@@ -1,7 +1,10 @@
 import XCTest
 @testable import SwiftyAlgorithms
 
-final class DepthFirstSearchTests: XCTestCase {
+final class LongestPathTests: XCTestCase {
+    typealias Vertex = BellmanFord.Vertex
+    typealias Edge = BellmanFord.Edge
+
     func test() throws {
         let vertexList = [
             Vertex(name: "S"),
@@ -26,6 +29,5 @@ final class DepthFirstSearchTests: XCTestCase {
 
         var bellmanFord = BellmanFord(edgeList: edgeList, vertexList: vertexList)
         bellmanFord.bellmanFord(sourceVertex: vertexList[0], targetVertex: vertexList[5])
-
     }
 }

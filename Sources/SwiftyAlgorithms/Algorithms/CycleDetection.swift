@@ -15,7 +15,7 @@ public struct CycleDetection {
         print("Begin dfs on vertex \(vertex)")
         vertex.beingVisited = true
 
-        for v in vertex.neighbourList {
+        for v in vertex.adjacenciesList {
             if v.beingVisited {
                 print("Cycle detected")
                 return

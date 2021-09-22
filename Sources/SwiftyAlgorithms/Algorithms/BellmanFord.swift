@@ -144,7 +144,7 @@ public struct BellmanFord {
 
 
 extension BellmanFord {
-    struct Edge {
+    public struct Edge {
         public var weight: Double
         public var startVertex: Vertex
         public var targetVertex: Vertex
@@ -180,7 +180,7 @@ extension BellmanFord.Vertex: CustomStringConvertible {
 }
 
 extension BellmanFord.Vertex: Equatable {
-    public static func == (lhs: Vertex, rhs: Vertex) -> Bool {
+    public static func == (lhs: BellmanFord.Vertex, rhs: BellmanFord.Vertex) -> Bool {
         return lhs.name == rhs.name
     }
 }

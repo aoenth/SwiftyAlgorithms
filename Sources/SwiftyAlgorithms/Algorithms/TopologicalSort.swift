@@ -74,4 +74,35 @@ class TopologicalSort {
         vertices.reverse()
         print(vertices)
     }
+
+    struct Edge {
+        var weight: Double
+        var startVertex: Vertex
+        var targetVertex: Vertex
+    }
+
+    public class Vertex: CustomStringConvertible, Equatable {
+        var name: String
+        var predecessor: Vertex?
+        var visited: Bool = false
+        var adjacenciesList = [Edge]()
+        var distance = Double.greatestFiniteMagnitude
+
+        init(name: String) {
+            self.name = name
+        }
+
+        func addNeighbour(edge: Edge) {
+            self.adjacenciesList.append(edge)
+        }
+
+        public var description: String {
+            return self.name
+        }
+
+        public static func == (lhs: Vertex, rhs: Vertex) -> Bool {
+            return lhs.name == rhs.name
+        }
+    }
 }
+

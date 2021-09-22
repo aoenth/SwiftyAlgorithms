@@ -1,92 +1,36 @@
 import Foundation
 
-enum StackError: Error {
-    case Empty(message: String)
-}
+public struct Stack<T: Equatable> {
+    private var list: LinkedList<T>
 
-protocol Stackable {
-    associatedtype Element: Equatable
-    mutating func push(element: Element)
-    mutating func pop() -> Element?
-    func peek() throws -> Element
-    func isEmpty() -> Bool
-    func count() -> Int
-    subscript(i: Int) -> Element { get }
-}
-
-public struct Stack<T: Equatable>: Stackable {
-
-    public typealias Element = T
-    var array = [T]()
-
-    init(capacity: Int) {
-        array.reserveCapacity(capacity)
+    public init() {
+        self.list = LinkedList<T>()
     }
 
-    public mutating func push(element: T) {
-        array.append(element)
+    public mutating func push(_ element: T) {
+        list.append(value: element)
     }
 
     public mutating func pop() -> T? {
-        return array.popLast()
-    }
-
-    public func peek() throws -> T {
-        guard !isEmpty(), let lastElement = array.last else {
-            throw StackError.Empty(message: "Array is empty")
+        guard !list.isEmpty, let element = list.last else {
+            return nil
         }
-        return lastElement
+        return list.remove(node: element)
     }
 
-    func isEmpty() -> Bool {
-        return array.isEmpty
+    public func isEmpty() -> Bool {
+        return list.isEmpty
     }
 
-    func count() -> Int {
-        return array.count
+    public mutating func reverse() {
+        self.list.reverse()
     }
-
 }
 
 extension Stack: CustomStringConvertible {
     public var description: String {
-        return array.map { "\($0)" }.joined(separator: ", ")
+        return list.description
     }
-}
-
-extension Stack: Collection {
-    public func makeIterator() -> AnyIterator<T> {
-        var curr = self
-        return AnyIterator { curr.pop() }
-    }
-
-    public subscript(i: Int) -> T {
-        return array[i]
-    }
-
-    public var startIndex: Int {
-        return array.startIndex
-    }
-
-    public var endIndex: Int {
-        return array.endIndex
-    }
-
-    public func index(after i: Int) -> Int {
-        return array.index(after: i)
-    }
-}
-
-protocol Container {
-    associatedtype Item
-    mutating func append(_ item: Item)
-    var count: Int { get }
-    subscript(i: Int) -> Item { get }
-}
-
-protocol SuffixableContainer: Container {
-    associatedtype Suffix: SuffixableContainer where Suffix.Item == Item
-    func suffix(_ size: Int) -> Suffix
 }
 
 /**
@@ -97,4 +41,3 @@ extension Stack: Sequence, IteratorProtocol {
         return pop()
     }
 }
-

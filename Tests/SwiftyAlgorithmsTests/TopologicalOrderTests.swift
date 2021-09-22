@@ -1,9 +1,9 @@
 import XCTest
 @testable import SwiftyAlgorithms
 
-final class DepthFirstSearchTests: XCTestCase {
+final class TopologicalOrderTests: XCTestCase {
     func test() throws {
-        var graph = [
+        let graph = [
             Vertex(data: 0),
             Vertex(data: 1),
             Vertex(data: 2),

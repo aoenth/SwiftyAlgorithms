@@ -2,10 +2,13 @@ import XCTest
 @testable import SwiftyAlgorithms
 
 final class DijkstraTests: XCTestCase {
+    typealias Vertex = Dijkstra.Vertex
+    typealias Edge = Dijkstra.Edge
+
     func test() throws {
-        var vertex0 = Vertex(name: "A")
-        var vertex1 = Vertex(name: "B")
-        var vertex2 = Vertex(name: "C")
+        let vertex0 = Vertex(name: "A")
+        let vertex1 = Vertex(name: "B")
+        let vertex2 = Vertex(name: "C")
 
         vertex0.addNeighbour(edge: Edge(weight: 1, startVertex: vertex0, targetVertex: vertex1))
 
@@ -13,8 +16,8 @@ final class DijkstraTests: XCTestCase {
 
         vertex1.addNeighbour(edge: Edge(weight: 1, startVertex: vertex1, targetVertex: vertex2))
 
-        computePaths(sourceVertex: vertex0)
+        Dijkstra.computePaths(sourceVertex: vertex0)
 
-        print(getShortestPath(to: vertex2))
+        print(Dijkstra.getShortestPath(to: vertex2))
     }
 }

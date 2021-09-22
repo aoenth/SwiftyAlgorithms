@@ -14,7 +14,7 @@ public struct TopologicalOrdering {
     public mutating func dfs(vertex: Vertex) {
         vertex.visited = true
         
-        for v in vertex.neighbourList {
+        for v in vertex.adjacenciesList {
             if !v.visited {
                 dfs(vertex: v)
             }
