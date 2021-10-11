@@ -8,24 +8,34 @@ public class DepthFirstSearch {
     }
     
     // Required because there may be disconnections between "clusters"
-    public func dfs(vertexList: [Vertex]) {
+    public func dfs(
+        vertexList: [Vertex],
+        strategy: Implementation,
+        onVisit: (Vertex) -> Void = { _ in }
+    ) {
+        guard vertexList.count > 0 else { return }
         for v in vertexList {
             if !v.visited {
                 v.visited = true
-                dfsRecursive(vertex: v)
-//                dfsWithStack(v)
+
+                switch strategy {
+                case .stack:
+                    dfsWithStack(rootVertex: vertexList[0], onVisit: onVisit)
+                case .recurse:
+                    dfsRecursive(vertex: vertexList[0], onVisit: onVisit)
+                }
             }
         }
     }
     
-    private func dfsWithStack(_ rootVertex: Vertex) {
+    private func dfsWithStack(rootVertex: Vertex, onVisit: (Vertex) -> Void = { _ in }) {
         self.stack.push(rootVertex)
         rootVertex.visited = true
         
         while !stack.isEmpty() {
             if let actualVertex = stack.pop() {
-                print(actualVertex)
-                
+                onVisit(actualVertex)
+
                 for v in actualVertex.neighbourList {
                     if !v.visited {
                         v.visited = true
@@ -38,13 +48,13 @@ public class DepthFirstSearch {
         
     }
     
-    private func dfsRecursive(vertex: Vertex) {
-        print(vertex)
+    private func dfsRecursive(vertex: Vertex, onVisit: (Vertex) -> Void = { _ in }) {
+        onVisit(vertex)
         
         for v in vertex.neighbourList {
             if !v.visited {
                 v.visited = true
-                dfsRecursive(vertex: v)
+                dfsRecursive(vertex: v, onVisit: onVisit)
             }
         }
     }
@@ -100,6 +110,11 @@ public class DepthFirstSearch {
         public mutating func reverse() {
             self.list.reverse()
         }
+    }
+
+    public enum Implementation {
+        case stack
+        case recurse
     }
 }
 
