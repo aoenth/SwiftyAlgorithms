@@ -32,9 +32,8 @@ final class BreadthFirstSearchTests: XCTestCase {
     final class BreadthFirstSearchSpy: BreadthFirstSearch {
         var visitations: [Vertex] = []
 
-        override func bfs(root: Vertex) {
-            visitations.append(root)
-            super.bfs(root: root)
+        override func bfs(root: Vertex, onVisit: (Vertex) -> Void = { _ in }) {
+            super.bfs(root: root) { visitations.append($0) }
         }
     }
 }

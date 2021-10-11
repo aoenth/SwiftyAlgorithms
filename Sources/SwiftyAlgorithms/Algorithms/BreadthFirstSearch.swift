@@ -1,12 +1,8 @@
 import Foundation
 
-public class BreadthFirstSearch {
-    
-    public init() {
-        
-    }
-    
-    public func bfs(root: Vertex) {
+class BreadthFirstSearch {
+
+    func bfs(root: Vertex, onVisit: (Vertex) -> Void = { _ in }) {
         var queue = Queue<Vertex>()
         
         root.visited = true
@@ -14,8 +10,8 @@ public class BreadthFirstSearch {
         
         while (!queue.isEmpty()) {
             if let actualVertex = queue.dequeue() {
-                print(actualVertex)
-                
+                onVisit(actualVertex)
+
                 for v in actualVertex.adjacenciesList {
                     if (!v.visited) {
                         v.visited = true
