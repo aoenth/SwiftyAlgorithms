@@ -4,16 +4,17 @@ public class DepthFirstSearch {
     private var stack: Stack<Vertex>
     
     public init() {
-        self.stack = Stack<Vertex>()
+        stack = Stack<Vertex>()
     }
     
-    // Required because there may be disconnections between "clusters"
     public func dfs(
         vertexList: [Vertex],
         strategy: Implementation,
         onVisit: (Vertex) -> Void = { _ in }
     ) {
         guard vertexList.count > 0 else { return }
+
+        // Required because there may be disconnections between "clusters"
         for v in vertexList {
             if !v.visited {
                 v.visited = true
@@ -29,10 +30,10 @@ public class DepthFirstSearch {
     }
     
     private func dfsWithStack(rootVertex: Vertex, onVisit: (Vertex) -> Void = { _ in }) {
-        self.stack.push(rootVertex)
+        stack.push(rootVertex)
         rootVertex.visited = true
         
-        while !stack.isEmpty() {
+        while !stack.isEmpty{
             if let actualVertex = stack.pop() {
                 onVisit(actualVertex)
 
@@ -103,12 +104,12 @@ public class DepthFirstSearch {
             return list.remove(node: element)
         }
 
-        public func isEmpty() -> Bool {
-            return list.isEmpty
+        public var isEmpty: Bool {
+            list.isEmpty
         }
 
         public mutating func reverse() {
-            self.list.reverse()
+            list.reverse()
         }
     }
 
@@ -120,7 +121,7 @@ public class DepthFirstSearch {
 
 extension DepthFirstSearch.Stack: CustomStringConvertible {
     public var description: String {
-        return list.description
+        list.description
     }
 }
 
@@ -129,6 +130,6 @@ extension DepthFirstSearch.Stack: CustomStringConvertible {
  */
 extension DepthFirstSearch.Stack: Sequence, IteratorProtocol {
     public mutating func next() -> T? {
-        return pop()
+        pop()
     }
 }
