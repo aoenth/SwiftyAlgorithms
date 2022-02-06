@@ -1,5 +1,5 @@
 import XCTest
-@testable import SwiftyAlgorithms
+@testable import AlgorithmsSwift
 
 final class DijkstraTests: XCTestCase {
     typealias Vertex = Dijkstra.Vertex

@@ -1,5 +1,5 @@
 import XCTest
-@testable import SwiftyAlgorithms
+@testable import AlgorithmsSwift
 
 class LinkedListReversalTest: XCTestCase {
     var ll: LinkedList<Int>!

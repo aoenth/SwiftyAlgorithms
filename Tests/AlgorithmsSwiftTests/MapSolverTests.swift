@@ -1,5 +1,5 @@
 import XCTest
-@testable import SwiftyAlgorithms
+@testable import AlgorithmsSwift
 
 final class MapSolverTests: XCTestCase {
     func test() throws {

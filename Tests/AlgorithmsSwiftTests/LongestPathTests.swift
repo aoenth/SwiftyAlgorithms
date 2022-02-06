@@ -1,5 +1,5 @@
 import XCTest
-@testable import SwiftyAlgorithms
+@testable import AlgorithmsSwift
 
 final class LongestPathTests: XCTestCase {
     typealias Vertex = BellmanFord.Vertex
