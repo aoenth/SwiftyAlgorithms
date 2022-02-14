@@ -1,5 +1,5 @@
 //
-//  SelectionSort.swift
+//  Selectionsort.swift
 //  
 //
 //  Created by Kevin Peng on 2022-02-14.
