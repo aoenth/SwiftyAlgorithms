@@ -14,21 +14,22 @@ public class LinkedListNode<T> {
 }
 
 public struct LinkedList<T> {
-    fileprivate var head: LinkedListNode<T>?
+
+    private var head: LinkedListNode<T>?
     private var tail: LinkedListNode<T>?
     
     public init() { }
     
     public var isEmpty: Bool {
-        return head == nil
+        head == nil
     }
     
     public var first: LinkedListNode<T>? {
-        return head
+        head
     }
     
     public var last: LinkedListNode<T>? {
-        return tail
+        tail
     }
     
     mutating public func append(value: T) {
@@ -55,22 +56,6 @@ public struct LinkedList<T> {
             head = newNode
             tail = newNode
         }
-    }
-
-    private var status: Status {
-        if head == nil && tail == nil {
-            return .empty
-        } else if head === tail {
-            return .oneNode
-        } else {
-            return .twoOrMoreNodes
-        }
-    }
-
-    enum Status {
-        case empty
-        case oneNode
-        case twoOrMoreNodes
     }
 
     mutating public func addAll(_ other: LinkedList<T>) {
@@ -103,14 +88,14 @@ public struct LinkedList<T> {
         // Not First Node
         if let prev = prev {
             prev.next = next
-        } else { // First Node
+        } else if node === head { // First Node
             head = next
         }
         
         // Last Node
         if let next = next {
             next.previous = prev
-        } else {
+        } else if node === tail {
             tail = prev
         }
         
@@ -130,7 +115,22 @@ public struct LinkedList<T> {
             current = current!.previous
         }
     }
-        
+
+    private var status: Status {
+        if head == nil && tail == nil {
+            return .empty
+        } else if head === tail {
+            return .oneNode
+        } else {
+            return .twoOrMoreNodes
+        }
+    }
+
+    private enum Status {
+        case empty
+        case oneNode
+        case twoOrMoreNodes
+    }
 }
 
 extension LinkedList: CustomStringConvertible {
@@ -149,8 +149,8 @@ extension LinkedList: CustomStringConvertible {
 
 extension LinkedList: Equatable where T: Equatable {
     public static func == (lhs: LinkedList<T>, rhs: LinkedList<T>) -> Bool {
-        var lhsNode = lhs.head
-        var rhsNode = rhs.head
+        var lhsNode = lhs.first
+        var rhsNode = rhs.first
 
         while let lhs = lhsNode, let rhs = rhsNode {
             if lhs.value != rhs.value {
