@@ -8,13 +8,13 @@
 import Foundation
 
 public struct SortingAlgorithms {
-    public static func selectionSort<T: Comparable>(input: [T]) -> [T] {
+    public static func selectionsort<T: Comparable>(input: [T]) -> [T] {
         var input = input
-        selectionSort(input: &input)
+        selectionsort(input: &input)
         return input
     }
 
-    public static func selectionSort<T: Comparable>(input: inout [T]) {
+    public static func selectionsort<T: Comparable>(input: inout [T]) {
         // for each currentIndex from 0 to input.count - 1
         // set minIndex = smallest element's index from currentIndex to input.count - 1
         // swap minIndex with index

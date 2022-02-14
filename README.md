@@ -1,21 +1,16 @@
 # Algorithms and Data Structures Implemented in Swift
 ## Data Structures
-They are found under the "Sources" folder
-### linked list
-* reversible
-* genericized
-### queue
-* based on linked list
-* genericized
-### stack
-* based on linked list
-* genericized
-### heap
-* genericized
-* you can set priority based on a comparison function
+* heap
+* linked list
+* queue
+* stack
 
 ## Algorithms
-They are found as Playground Pages
+### Sorting Algorithms
+* selectionsort
+
+### Other Algorithms
+* bi-directional BFS
 * breadth-first search
 * depth-first search
 * topological ordering
