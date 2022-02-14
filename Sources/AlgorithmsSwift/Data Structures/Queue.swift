@@ -1,11 +1,9 @@
 import Foundation
 
-public struct Queue<T> where T: Equatable {
+public struct Queue<T> {
     fileprivate var list = LinkedList<T>()
     
-    public init() {
-        
-    }
+    public init() { }
     
     public mutating func enqueue(_ element: T) {
         list.append(value: element)
@@ -22,6 +20,16 @@ public struct Queue<T> where T: Equatable {
     
     public func isEmpty() -> Bool {
         return list.isEmpty
+    }
+
+    public var count: Int {
+        var currentNode = list.first
+        var count = 0
+        while let node = currentNode {
+            currentNode = node.next
+            count += 1
+        }
+        return count
     }
 }
 
