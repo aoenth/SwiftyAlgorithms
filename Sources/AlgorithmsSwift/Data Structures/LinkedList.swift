@@ -3,10 +3,10 @@ import Foundation
 // Implementation of LinkedList
 // https://www.raywenderlich.com/947-swift-algorithm-club-swift-linked-list-data-structure
 
-public class Node<T> {
+public class LinkedListNode<T> {
     public var value: T
-    public var next: Node?
-    public var previous: Node?
+    public var next: LinkedListNode?
+    public var previous: LinkedListNode?
     
     public init(value: T) {
         self.value = value
@@ -14,8 +14,8 @@ public class Node<T> {
 }
 
 public struct LinkedList<T> {
-    fileprivate var head: Node<T>?
-    private var tail: Node<T>?
+    fileprivate var head: LinkedListNode<T>?
+    private var tail: LinkedListNode<T>?
     
     public init() { }
     
@@ -23,16 +23,16 @@ public struct LinkedList<T> {
         return head == nil
     }
     
-    public var first: Node<T>? {
+    public var first: LinkedListNode<T>? {
         return head
     }
     
-    public var last: Node<T>? {
+    public var last: LinkedListNode<T>? {
         return tail
     }
     
     mutating public func append(value: T) {
-        let newNode = Node(value: value)
+        let newNode = LinkedListNode(value: value)
         
         if let tailNode = tail {
             newNode.previous = tailNode
@@ -45,7 +45,7 @@ public struct LinkedList<T> {
     }
 
     mutating public func addFirst(value: T) {
-        let newNode = Node(value: value)
+        let newNode = LinkedListNode(value: value)
         switch status {
         case .oneNode, .twoOrMoreNodes:
             newNode.next = head
@@ -96,7 +96,7 @@ public struct LinkedList<T> {
         tail = nil
     }
     
-    mutating public func remove(node: Node<T>) -> T {
+    mutating public func remove(node: LinkedListNode<T>) -> T {
         let prev = node.previous
         let next = node.next
         
