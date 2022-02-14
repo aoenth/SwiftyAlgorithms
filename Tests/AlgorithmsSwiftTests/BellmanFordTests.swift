@@ -18,7 +18,6 @@ final class BellmanFordTests: XCTestCase {
             Edge(weight: -1.21, startVertex: vertexList[1], targetVertex: vertexList[0])
         ]
 
-
         var bellmanFord = BellmanFord(edgeList: edgeList, vertexList: vertexList)
         bellmanFord.bellmanFord(sourceVertex: vertexList[0])
         for v in bellmanFord.shortestPathTo(targetVertex: vertexList[2]) {

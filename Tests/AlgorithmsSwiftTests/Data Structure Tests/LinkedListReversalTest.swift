@@ -16,7 +16,7 @@ class LinkedListReversalTest: XCTestCase {
         ll.append(value: 1)
         ll.reverse()
 
-        let llExpected = LinkedList<Int>()
+        var llExpected = LinkedList<Int>()
         llExpected.append(value: 1)
 
         XCTAssertEqual(ll.description, llExpected.description)
@@ -27,7 +27,7 @@ class LinkedListReversalTest: XCTestCase {
         ll.append(value: 2)
         ll.reverse()
 
-        let llExpected = LinkedList<Int>()
+        var llExpected = LinkedList<Int>()
         llExpected.append(value: 2)
         llExpected.append(value: 1)
 
@@ -40,7 +40,7 @@ class LinkedListReversalTest: XCTestCase {
         ll.append(value: 3)
         ll.reverse()
 
-        let llExpected = LinkedList<Int>()
+        var llExpected = LinkedList<Int>()
         llExpected.append(value: 3)
         llExpected.append(value: 2)
         llExpected.append(value: 1)

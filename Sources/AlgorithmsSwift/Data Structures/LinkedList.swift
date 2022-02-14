@@ -3,7 +3,7 @@ import Foundation
 // Implementation of LinkedList
 // https://www.raywenderlich.com/947-swift-algorithm-club-swift-linked-list-data-structure
 
-public class Node<T> where T: Equatable {
+public class Node<T> {
     public var value: T
     public var next: Node?
     public var previous: Node?
@@ -13,19 +13,11 @@ public class Node<T> where T: Equatable {
     }
 }
 
-extension Node: Equatable where T: Equatable {
-    public static func == (lhs: Node<T>, rhs: Node<T>) -> Bool {
-        return lhs.value == rhs.value
-    }
-}
-
-public class LinkedList<T> where T: Equatable {
+public struct LinkedList<T> {
     fileprivate var head: Node<T>?
     private var tail: Node<T>?
     
-    public init() {
-        
-    }
+    public init() { }
     
     public var isEmpty: Bool {
         return head == nil
@@ -39,26 +31,72 @@ public class LinkedList<T> where T: Equatable {
         return tail
     }
     
-    public func append(value: T) {
+    mutating public func append(value: T) {
         let newNode = Node(value: value)
         
         if let tailNode = tail {
             newNode.previous = tailNode
             tailNode.next = newNode
-        }
-        else {
+        } else {
             head = newNode
         }
         
         tail = newNode
     }
+
+    mutating public func addFirst(value: T) {
+        let newNode = Node(value: value)
+        switch status {
+        case .oneNode, .twoOrMoreNodes:
+            newNode.next = head
+            head?.previous = newNode
+            head = newNode
+        case .empty:
+            head = newNode
+            tail = newNode
+        }
+    }
+
+    private var status: Status {
+        if head == nil && tail == nil {
+            return .empty
+        } else if head === tail {
+            return .oneNode
+        } else {
+            return .twoOrMoreNodes
+        }
+    }
+
+    enum Status {
+        case empty
+        case oneNode
+        case twoOrMoreNodes
+    }
+
+    mutating public func addAll(_ other: LinkedList<T>) {
+        var currentNode = other.head
+        while let node = currentNode {
+            tail?.next = node
+            tail = node
+            currentNode = node.next
+        }
+    }
+
+    mutating public func removeFirst() {
+        if head === tail {
+            tail = nil
+            head = nil
+        } else {
+            head = first?.next
+        }
+    }
     
-    public func removeAll() {
+    mutating public func removeAll() {
         head = nil
         tail = nil
     }
     
-    public func remove(node: Node<T>) -> T {
+    mutating public func remove(node: Node<T>) -> T {
         let prev = node.previous
         let next = node.next
         
@@ -81,7 +119,7 @@ public class LinkedList<T> where T: Equatable {
         return node.value
     }
     
-    public func reverse() {
+    mutating public func reverse() {
         tail = head
         var current = head
         while current != nil {
@@ -98,13 +136,30 @@ public class LinkedList<T> where T: Equatable {
 extension LinkedList: CustomStringConvertible {
     public var description: String {
         var text = "["
-        var node = head
+        var currentNode = head
         
-        while node != nil {
-            text += "\(node!.value)"
-            node = node!.next
-            if node != nil { text += ", " }
+        while let node = currentNode {
+            text += "\(node.value)"
+            currentNode = node.next
+            if currentNode != nil { text += "-> " }
         }
         return text + "]"
+    }
+}
+
+extension LinkedList: Equatable where T: Equatable {
+    public static func == (lhs: LinkedList<T>, rhs: LinkedList<T>) -> Bool {
+        var lhsNode = lhs.head
+        var rhsNode = rhs.head
+
+        while let lhs = lhsNode, let rhs = rhsNode {
+            if lhs.value != rhs.value {
+                return false
+            }
+            lhsNode = lhs.next
+            rhsNode = rhs.next
+        }
+
+        return lhsNode == nil && rhsNode == nil
     }
 }
