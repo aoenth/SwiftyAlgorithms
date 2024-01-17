@@ -5,7 +5,15 @@ final class BellmanFordTests: XCTestCase {
     typealias Vertex = BellmanFord.Vertex
     typealias Edge = BellmanFord.Edge
 
-    func _test() throws {
+    /*
+     A  - +1.00 -> B
+       <- +1.21 -
+     \
+      +1
+       ↘️
+        C
+     */
+    func test() throws {
         let vertexList = [
             Vertex(name: "A"),
             Vertex(name: "B"),
@@ -14,8 +22,8 @@ final class BellmanFordTests: XCTestCase {
 
         let edgeList = [
             Edge(weight: 1, startVertex: vertexList[0], targetVertex: vertexList[1]),
-            Edge(weight: -1, startVertex: vertexList[0], targetVertex: vertexList[2]),
-            Edge(weight: -1.21, startVertex: vertexList[1], targetVertex: vertexList[0])
+            Edge(weight: 1, startVertex: vertexList[0], targetVertex: vertexList[2]),
+            Edge(weight: 1.21, startVertex: vertexList[1], targetVertex: vertexList[0])
         ]
 
         var bellmanFord = BellmanFord(edgeList: edgeList, vertexList: vertexList)
