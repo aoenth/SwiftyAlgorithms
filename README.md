@@ -4,6 +4,7 @@
 * linked list
 * queue
 * stack
+* [trie](https://en.wikipedia.org/wiki/Trie)
 
 ## Algorithms
 ### Sorting Algorithms
