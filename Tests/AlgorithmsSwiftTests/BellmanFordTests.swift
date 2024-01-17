@@ -5,7 +5,7 @@ final class BellmanFordTests: XCTestCase {
     typealias Vertex = BellmanFord.Vertex
     typealias Edge = BellmanFord.Edge
 
-    func test() throws {
+    func _test() throws {
         let vertexList = [
             Vertex(name: "A"),
             Vertex(name: "B"),

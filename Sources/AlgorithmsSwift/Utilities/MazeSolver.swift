@@ -10,12 +10,10 @@ public struct MazeSolver {
     private var map: [[Int]]
     private var visited: [[Bool]]
     
-    public init(filename: String, fileExtension: String, rows: Int, columns: Int) {
-        let fileReader = FileReader(filename: filename, fileExtension: fileExtension, rows: rows, columns: columns)
-        
-        self.startingPosition = fileReader.startingPosition
+    public init(map: [[Int]], startingPosition: (Int, Int)?, rows: Int, columns: Int) {
+        self.startingPosition = startingPosition
         self.visited = [[Bool]](repeating: [Bool](repeating: false, count: columns), count: rows)
-        self.map = fileReader.map
+        self.map = map
     }
     
     public mutating func solveMaze() {

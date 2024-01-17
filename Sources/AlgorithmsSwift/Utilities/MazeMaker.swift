@@ -1,19 +1,10 @@
 import Foundation
 
-public struct FileReader {
+public struct MazeMaker {
     public var map: [[Int]]
     public var startingPosition: (Int, Int)?
 
-    public init(filename: String, fileExtension: String, rows: Int, columns: Int) {
-        var text = ""
-        
-        do {
-            guard let fileUrl = Bundle.main.url(forResource: "map", withExtension: "txt") else { fatalError() }
-            text = try String(contentsOf: fileUrl, encoding: String.Encoding.utf8)
-        } catch {
-            print(error)
-        }
-
+    public init(text: String, rows: Int, columns: Int) {
         // Generate Map
         let rowsOfText = text.split { $0.isNewline }
         var map = [[Int]](repeating: [Int](repeating: 0, count: columns), count: rows)
