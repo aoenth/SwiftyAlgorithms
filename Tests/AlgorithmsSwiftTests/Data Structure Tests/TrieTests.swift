@@ -7,7 +7,6 @@ final class TriesTests: XCTestCase {
         let sut = TrieNode(value: Character("a"))
         sut.add(string: "b")
         XCTAssertEqual(sut.children.count, 1)
-        XCTAssertEqual(sut.description, "ab")
     }
 
     func test_contains_shouldContainTwoWords() {
@@ -28,11 +27,5 @@ final class TriesTests: XCTestCase {
     func test_contains_shouldNotContainNonSubstring() {
         let sut = TrieNode(string: "abcde")
         XCTAssertFalse(sut.contains(string: "abce"))
-    }
-
-    func test_contains_containsOneValue() {
-        let sut = TrieNode(value: Character("a"))
-        XCTAssertEqual(sut.description, "a")
-        XCTAssert(sut.contains(string: "a"))
     }
 }

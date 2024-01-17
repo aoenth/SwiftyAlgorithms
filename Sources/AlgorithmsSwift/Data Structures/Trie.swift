@@ -1,6 +1,6 @@
 import Foundation
 
-public class TrieNode: CustomStringConvertible {
+public class TrieNode {
 
     public init(value: Character) {
         self.value = value
@@ -51,9 +51,5 @@ public class TrieNode: CustomStringConvertible {
             }
         }
         return false
-    }
-
-    public var description: String {
-        String(value) + children.map(\.description).joined()
     }
 }
